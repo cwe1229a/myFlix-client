@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/cwe1229a/myFlix-client#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "lmdb": "^2.5.2",
     "lmdb-store": "^1.6.14",
     "lodash": "^4.17.21",
