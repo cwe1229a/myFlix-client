@@ -30270,6 +30270,8 @@ parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _s = $RefreshSig$();
 function LoginView(props) {
     _s();
@@ -30291,13 +30293,13 @@ function LoginView(props) {
                         onChange: (e)=>setUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 19,
+                        lineNumber: 20,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 17,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -30309,13 +30311,13 @@ function LoginView(props) {
                         onChange: (e)=>setPassword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 23,
+                        lineNumber: 24,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 21,
+                lineNumber: 22,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -30324,18 +30326,25 @@ function LoginView(props) {
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 16,
+        lineNumber: 17,
         columnNumber: 5
     }, this);
 }
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
+LoginView.PropTypes = {
+    user: (0, _propTypesDefault.default).shape({
+        username: (0, _propTypesDefault.default).string.isRequired,
+        password: (0, _propTypesDefault.default).string.isRequired
+    }),
+    onLoggedIn: (0, _propTypesDefault.default).func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "LoginView");
 
@@ -30344,7 +30353,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -30494,48 +30503,7 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"bwuIu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$67b2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-class MovieCard extends (0, _reactDefault.default).Component {
-    render() {
-        const { movie , onMovieClick  } = this.props;
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            onClick: ()=>onMovieClick(movie),
-            className: "movie-card",
-            children: movie.Title
-        }, void 0, false, {
-            fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 9,
-            columnNumber: 7
-        }, this);
-    }
-}
-MovieCard.propTypes = {
-    movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string
-    }).isRequired,
-    onMovieClick: (0, _propTypesDefault.default).func.isRequired
-};
-
-  $parcel$ReactRefreshHelpers$67b2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
+},{"react-refresh/runtime":"786KC"}],"7wKI2":[function(require,module,exports) {
 var ReactIs = require("react-is");
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
@@ -31276,7 +31244,50 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"./lib/ReactPropTypesSecret":"jZTZJ","./lib/has":"fqKuf"}],"ggaUx":[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":"jZTZJ","./lib/has":"fqKuf"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+class MovieCard extends (0, _reactDefault.default).Component {
+    render() {
+        const { movie , onMovieClick  } = this.props;
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            onClick: ()=>onMovieClick(movie),
+            className: "movie-card",
+            children: movie.Title
+        }, void 0, false, {
+            fileName: "src/components/movie-card/movie-card.jsx",
+            lineNumber: 9,
+            columnNumber: 7
+        }, this);
+    }
+}
+MovieCard.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        ImagePath: (0, _propTypesDefault.default).string.isRequired
+    }).isRequired,
+    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+};
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
