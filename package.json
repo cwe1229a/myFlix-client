@@ -25,6 +25,7 @@
     "lodash": "^4.17.21",
     "parcel": "^2.0.0-rc.0",
     "react": "^18.1.0",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0"
   },
   "devDependencies": {

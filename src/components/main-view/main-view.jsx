@@ -1,4 +1,12 @@
 import React from 'react';
+<<<<<<< Updated upstream
+=======
+import axios from 'axios';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+import { LoginView } from '../login-view/login-view';
+>>>>>>> Stashed changes
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -77,8 +85,24 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className='main-view'>The list is empty!</div>;
 
     return (
+<<<<<<< Updated upstream
       <div className='main-view'>
         {movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setState({ selectedMovie: newSelectedMovie }); }} />)}
+=======
+      <div className="main-view">
+        {selectedMovie
+          ? (
+            <Row className="justify-content-md-center">
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            </Row>
+          )
+          : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+          ))
+        }
+>>>>>>> Stashed changes
       </div>
     );
   }
