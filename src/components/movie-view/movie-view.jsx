@@ -1,9 +1,4 @@
 import React from 'react';
-<<<<<<< Updated upstream
-
-export class MovieView extends React.Component {
-
-=======
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -38,7 +33,6 @@ export class MovieView extends React.Component {
       });
   }
 
->>>>>>> Stashed changes
   render() {
     const { movie, user, onBackClick } = this.props;
 
@@ -55,17 +49,6 @@ export class MovieView extends React.Component {
           <span className='label'>Description:</span>
           <span className='value'>{movie.Description}</span>
         </div>
-<<<<<<< Updated upstream
-        <div className='movie-director'>
-          <span className='label'>Director:</span>
-          <span className='value'>{movie.Director.Name + '~ ' + movie.Director.Bio}</span>
-        </div>
-        <div className='movie-genre'>
-          <span className='label'>Genre:</span>
-          <span className='value'>{movie.Genre.Name + '~ ' + movie.Genre.Description}</span>
-        </div>
-        <button onClick={() => { onBackClick(null); }}>Back</button>
-=======
         <Link to={`/directors/${movie.Director.Name}`}>
           <Button className="link" variant="info">Director</Button>
         </Link>
@@ -77,8 +60,15 @@ export class MovieView extends React.Component {
         </div>
         <Button onClick={() => { onBackClick(null); }}>Back</Button>
 
->>>>>>> Stashed changes
       </div>
     );
   }
 }
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired
+};
