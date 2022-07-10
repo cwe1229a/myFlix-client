@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
@@ -9,12 +10,38 @@ import { LoginView } from '../login-view/login-view';
 >>>>>>> Stashed changes
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+=======
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-export class MainView extends React.Component {
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+
+import { setMovies, setUser } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+
+import { Navbar } from '../navbar/navbar';
+import { LoginView } from '../login-view/login-view';
+import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../registration-view/registration-view';
+import { DirectorView } from '../director-view/director-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { GenreView } from '../genre-view/genre-view';
+
+import { Col, Row } from 'react-bootstrap';
+
+
+import './main-view.scss';
+
+>>>>>>> Stashed changes
+
+class MainView extends React.Component {
 
   constructor() {
     super();
+
+
     this.state = {
+<<<<<<< Updated upstream
       movies: [
         {
           _id: '6286d1815bb1ae9a04c36b1c',
@@ -72,13 +99,74 @@ export class MainView extends React.Component {
   }
 
   setSelectedMovie(newSelectedMovie) {
+=======
+      user: null
+    };
+  }
+
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
+  getMovies(token) {
+    axios.get('https://piratemoviesapi.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        // Assigns the result to the state
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  onLoggedIn(authData) {
+    console.log(authData);
+    this.setState({
+      user: authData.user.Username
+    });
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('users');
+>>>>>>> Stashed changes
     this.setState({
       selectedMovie: newSelectedMovie
     });
   }
 
   render() {
+<<<<<<< Updated upstream
     const { movies, selectedMovie } = this.state;
+=======
+    let { movies } = this.props;
+    let { user } = this.state;
+
+    return (
+      <Router>
+        <Navbar user={user} />
+        <Row className="main-view justify-content-md-center">
+          <Route exact path="/" render={() => {
+            if (!user) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view"></div>
+            return <MoviesList movies={movies} />;
+          }} />
+>>>>>>> Stashed changes
 
     if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />;
 
@@ -106,4 +194,14 @@ export class MainView extends React.Component {
       </div>
     );
   }
+<<<<<<< Updated upstream
 }
+=======
+}
+let mapStateToProps = state => {
+  return { movies: state.movies, user: state.user }
+}
+
+
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
+>>>>>>> Stashed changes

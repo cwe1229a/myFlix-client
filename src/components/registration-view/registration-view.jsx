@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< Updated upstream
+=======
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import './registration-view.scss';
+
+>>>>>>> Stashed changes
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 
 import './registration-view.scss';

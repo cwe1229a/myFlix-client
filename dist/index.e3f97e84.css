@@ -1,7 +1,134 @@
+* {
+  box-sizing: border-box;
+}
 
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
 
+<<<<<<< Updated upstream
 .my-flix {
   color: #4682b4;
+=======
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+.fav-movie {
+  margin-bottom: 15px;
+}
+
+.fav-movie figure {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.fav-movie figure img {
+  height: 400px;
+  margin: auto;
+  display: block;
+}
+
+.fav-movie figure figcaption {
+  text-align: center;
+}
+
+.fav-movie button.btn {
+  margin: auto;
+  display: block;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-view {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+.bg-navColor {
+  background: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-view {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+.bg-navColor {
+  background: #000;
+>>>>>>> Stashed changes
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */
