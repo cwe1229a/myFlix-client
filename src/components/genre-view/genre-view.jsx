@@ -12,7 +12,7 @@ export class GenreView extends React.Component {
       <Container>
         <Row>
           <Col className="label">Genre: </Col>
-          <Col className="value">{genre.Genre.Name}</Col>
+          <Col className="value">{genre.Genre.name}</Col>
         </Row>
         <Row>
           <Col className="label">Description: </Col>
@@ -26,7 +26,7 @@ export class GenreView extends React.Component {
 
 GenreView.propTypes = {
   genre: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired
   }).isRequired,
   onBackClick: PropTypes.func.isRequired

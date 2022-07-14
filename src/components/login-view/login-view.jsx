@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 import axios from 'axios';
 
+import './login-view.scss';
+
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,25 +29,27 @@ export function LoginView(props) {
     }
 
     return isReq;
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
+      /* Send a request to the server for authentication */
       axios.post('https://piratemoviesapi.herokuapp.com/login', {
         Username: username,
-        Password: password
+        Password: password,
       })
-        .then(response => {
+        .then((response) => {
           const data = response.data;
           props.onLoggedIn(data);
         })
-        .catch(e => {
-          console.log('no such user')
+        .catch((e) => {
+          console.log('no such user');
         });
     }
   };
+
 
   return (
     <Container>

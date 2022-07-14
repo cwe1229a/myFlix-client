@@ -13,6 +13,17 @@ body {
   box-sizing: border-box;
 }
 
+.container {
+  width: 100%;
+  background: #fff;
+  font-family: Fredoka;
+  display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   width: 100%;
   background: #fff;
@@ -79,8 +90,18 @@ body {
   background: #000;
 }
 
+.main-nav {
+  background-color: #ac1010;
+  margin-bottom: 60px;
+  padding: 0;
+}
+
+.nav-link {
+  color: #000;
+}
+
 .my-flix {
-  color: #4682b4;
+  color: #000;
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */
