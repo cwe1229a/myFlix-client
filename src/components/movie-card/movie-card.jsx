@@ -1,18 +1,12 @@
 import React from 'react';
-<<<<<<< Updated upstream
-=======
 import PropTypes from 'prop-types';
 import { Form, Button, Card } from "react-bootstrap";
-import "./movie-card.scss";
->>>>>>> Stashed changes
+// import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
     const { movie, onMovieClick } = this.props;
 
-<<<<<<< Updated upstream
-    return <div className="movie-card" onClick={() => { onMovieClick(movie); }}>{movie.Title}</div>;
-=======
     return (
       <Card>
         <Card.Img variant="top" src={movie.ImagePath} />
@@ -23,6 +17,5 @@ export class MovieCard extends React.Component {
         </Card.Body>
       </Card>
     );
->>>>>>> Stashed changes
   }
 }
