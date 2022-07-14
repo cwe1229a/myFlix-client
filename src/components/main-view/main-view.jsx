@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
-import { Navbar } from '../navbar/navbar';
+// import { Navbar } from '../navbar/navbar';
 import { LoginView } from '../login-view/login-view';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -26,7 +26,7 @@ class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -78,7 +78,7 @@ class MainView extends React.Component {
 
     return (
       <Router>
-        <Navbar user={user} />
+        {/* <Navbar user={user} /> */}
         <Container fluid>
           <Row className="main-view justify-content-md-center">
             <Route exact path="/" render={() => {
