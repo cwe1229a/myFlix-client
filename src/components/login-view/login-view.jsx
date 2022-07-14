@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import './login-view.scss';
 
@@ -74,6 +75,7 @@ export function LoginView(props) {
                   <Button variant="primary" size="lg" type="submit" onClick={handleSubmit}>
                     Submit
                   </Button>
+                  <p>Need to Register?<Link to={`/register`}>Register Here</Link></p>
                 </Form>
               </Card.Body>
             </Card>
@@ -84,10 +86,10 @@ export function LoginView(props) {
   );
 }
 
-LoginView.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  }),
-  onLoggedIn: PropTypes.func.isRequired,
-};
+// LoginView.propTypes = {
+//   user: PropTypes.shape({
+//     username: PropTypes.string.isRequired,
+//     password: PropTypes.string.isRequired,
+//   }),
+//   onLoggedIn: PropTypes.func.isRequired,
+// };
