@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 
-import './registration-view.scss';
+// import './registration-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -23,7 +23,7 @@ export function LoginView(props) {
           <CardGroup>
             <Card>
               <Card.Body>
-                <Card.Title>Welcome to MyFlix Registration! Please Register!</Card.Title>
+                <Card.Title>Welcome aboard, matey! Please Register!</Card.Title>
                 <Form>
                   <Form.Group>
                     <Form.Label>Username:</Form.Label>

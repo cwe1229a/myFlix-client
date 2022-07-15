@@ -82,7 +82,7 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className='main-view'>The list is empty!</div>;
 
     return (
-      <div className="main-view">
+      <Row className="main-view">
         {selectedMovie
           ? (
             <Row className="justify-content-md-center">
@@ -92,10 +92,12 @@ export class MainView extends React.Component {
             </Row>
           )
           : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            <Col md={3}>
+              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            </Col>
           ))
         }
-      </div>
+      </Row>
     );
   }
 }
