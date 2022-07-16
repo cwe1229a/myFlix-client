@@ -35,12 +35,19 @@ export class MainView extends React.Component {
     });
   }
 
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user } = this.state;
 
-    if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />;
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-    if (movies.length === 0) return <div className='main-view'>The list is empty!</div>;
+    // Before the movies have been loaded
+    if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <Row className="main-view">
