@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Button } from 'react-bootstrap';
 
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -18,6 +17,16 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
+  componentDidMount() {
     axios.get('https://piratemoviesapi.herokuapp.com/movies')
       .then(response => {
         this.setState({
@@ -25,6 +34,20 @@ export class MainView extends React.Component {
         });
       })
       .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getMovies(token) {
+    axios.get('https://piratemoviesapi.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
         console.log(error);
       });
   }
