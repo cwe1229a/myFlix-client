@@ -6,18 +6,18 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 export class GenreView extends React.Component {
   render() {
-    const { movie, onBackClick } = this.props;
+    const { genre, onBackClick } = this.props;
 
 
     return (
       <Container>
         <Row>
           <Col className="label">Genre: </Col>
-          <Col className="value">{movie.Genre.Name}</Col>
+          <Col className="value">{genre.Name}</Col>
         </Row>
         <Row className="mt-3">
           <Col className="label">Description: </Col>
-          <Col className="value">{movie.Genre.Description}</Col>
+          <Col className="value">{genre.Description}</Col>
         </Row>
         <Button className="d-block mt-3" onClick={() => { onBackClick(null); }} variant="warning">Back</Button>
       </Container>
@@ -26,14 +26,9 @@ export class GenreView extends React.Component {
 }
 
 GenreView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired
-    }),
+  genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired
   }).isRequired,
   onBackClick: PropTypes.func.isRequired
-};
+}

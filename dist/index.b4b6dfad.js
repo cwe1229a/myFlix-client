@@ -36162,7 +36162,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             className: "value",
-                            children: director.Director.Name
+                            children: director.Name
                         }, void 0, false, {
                             fileName: "src/components/director-view/director-view.jsx",
                             lineNumber: 16,
@@ -36187,7 +36187,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             className: "value",
-                            children: director.Director.Bio
+                            children: director.Bio
                         }, void 0, false, {
                             fileName: "src/components/director-view/director-view.jsx",
                             lineNumber: 20,
@@ -36212,7 +36212,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             className: "value",
-                            children: director.Director.Birth
+                            children: director.Birth
                         }, void 0, false, {
                             fileName: "src/components/director-view/director-view.jsx",
                             lineNumber: 24,
@@ -36274,7 +36274,7 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 class GenreView extends (0, _reactDefault.default).Component {
     render() {
-        const { movie , onBackClick  } = this.props;
+        const { genre , onBackClick  } = this.props;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -36289,7 +36289,7 @@ class GenreView extends (0, _reactDefault.default).Component {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             className: "value",
-                            children: movie.Genre.Name
+                            children: genre.Name
                         }, void 0, false, {
                             fileName: "src/components/genre-view/genre-view.jsx",
                             lineNumber: 16,
@@ -36314,7 +36314,7 @@ class GenreView extends (0, _reactDefault.default).Component {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                             className: "value",
-                            children: movie.Genre.Description
+                            children: genre.Description
                         }, void 0, false, {
                             fileName: "src/components/genre-view/genre-view.jsx",
                             lineNumber: 20,
@@ -36347,14 +36347,9 @@ class GenreView extends (0, _reactDefault.default).Component {
     }
 }
 GenreView.propTypes = {
-    movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string.isRequired,
-        Genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Description: (0, _propTypesDefault.default).string.isRequired
-        }),
-        Description: (0, _propTypesDefault.default).string.isRequired,
-        ImagePath: (0, _propTypesDefault.default).string.isRequired
+    genre: (0, _propTypesDefault.default).shape({
+        Name: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
