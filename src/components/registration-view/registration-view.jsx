@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -124,10 +123,10 @@ export function LoginView(props) {
   );
 }
 
-RegistrationView.PropTypes = {
-  register: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired
-  }),
-};
+// RegistrationView.PropTypes = {
+//   register: PropTypes.shape({
+//     username: PropTypes.string.isRequired,
+//     Password: PropTypes.string.isRequired,
+//     email: PropTypes.string.isRequired
+//   }),
+// };
