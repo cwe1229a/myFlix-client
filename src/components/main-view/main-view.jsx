@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 

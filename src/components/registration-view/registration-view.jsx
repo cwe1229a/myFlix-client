@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 // import './registration-view.scss';
 
-export function LoginView(props) {
+export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [Password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export function LoginView(props) {
     if (!Password) {
       setValues({ ...values, passwordErr: 'Password is required' });
       isReq = false;
-    } else if (password.length < 6) {
+    } else if (Password.length < 6) {
       setValues({ ...values, passwordErr: 'Password must be 6 characters long' });
       isReq = false;
     }
@@ -123,10 +124,10 @@ export function LoginView(props) {
   );
 }
 
-// RegistrationView.PropTypes = {
-//   register: PropTypes.shape({
-//     username: PropTypes.string.isRequired,
-//     Password: PropTypes.string.isRequired,
-//     email: PropTypes.string.isRequired
-//   }),
-// };
+RegistrationView.PropTypes = {
+  register: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  }),
+};

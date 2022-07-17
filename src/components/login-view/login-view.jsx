@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-// import { Link } from 'react-router-dom';
+import { Card, CardGroup, Col, Container, Form, Row, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -52,21 +52,37 @@ export function LoginView(props) {
 
 
   return (
-    <Form>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
-        {usernameErr && <p>{usernameErr}</p>}
-      </Form.Group>
+    <Container>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+              <Card.Body>
+                <Card.Title> Yaargh, matey! Sign into MyFlix! </Card.Title>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" value={Password} onChange={e => setPassword(e.target.value)} />
-        {passwordErr && <p>{passwordErr}</p>}
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-        Submit
-      </Button>
-    </Form>
+                <Form>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
+                    {usernameErr && <p>{usernameErr}</p>}
+                  </Form.Group>
+
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" value={Password} onChange={e => setPassword(e.target.value)} />
+                    {passwordErr && <p>{passwordErr}</p>}
+                  </Form.Group>
+                  <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                  <p>Need to Register?<Link to={`/register`}>Register Here</Link></p>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
+
   )
 }

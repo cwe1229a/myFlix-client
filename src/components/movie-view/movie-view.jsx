@@ -1,10 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { Button, Container, Card } from "react-bootstrap";
 
 export class MovieView extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      movies: [],
+      user: null
+    };
+  }
 
   componentDidMount() {
     document.addEventListener('keypress', event => {
@@ -12,8 +20,26 @@ export class MovieView extends React.Component {
     });
   }
 
+  addMovie(movie, user) {
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    console.log(movie);
+    console.log(token);
+
+    axios.post(`https://piratemoviesapi.herokuapp.com/users/${username}/movies/${movie._id}`, {},
+      { headers: { Authorization: `Bearer ${token}` } })
+      .then(response => {
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
-    const { movie, user, onBackClick } = this.props;
+    const { movie, user, onClick, onBackClick } = this.props;
 
     return (
       <Container>
