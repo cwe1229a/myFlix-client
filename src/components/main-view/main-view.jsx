@@ -14,6 +14,8 @@ import { ProfileView } from '../profile-view/profile-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
+import { UserUpdate } from '../profile-view/update-view';
+import { Navbar } from '../navbar/navbar';
 
 class MainView extends React.Component {
 
@@ -59,19 +61,31 @@ class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
+    console.log(authData);
+    this.props.setUser(authData.user.Username);
+    this.getMovies(authData.token);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
-    const { setUser } = this.props;
-    setUser(authData.user.Username);
-    this.getMovies(authData.token);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.props.setUser('');
+  }
+
+  onRegister() {
+    this.setState({
+      isRegistered: false,
+    });
   }
 
   render() {
-    let { movies } = this.props;
-    let { user } = this.state;
+    let { movies, user } = this.props;
 
     return (
       <Router>
+        <Navbar user={user} />
         <Row className="main-view justify-content-md-center">
           <Route exact path="/" render={() => {
             if (!user) return (<Col>
@@ -103,6 +117,14 @@ class MainView extends React.Component {
               <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()} />
             </Col>
           }} />
+
+          <Route path={`/users/user-update/${user}`}
+            render={({ match, history }) => {
+              if (!user) return <Redirect to="/" />
+              return <Col>
+                <UserUpdate />
+              </Col>
+            }} />
 
           <Route path="/movies/:movieId" render={({ match, history }) => {
             if (!user) return <Col>
