@@ -21,25 +21,39 @@ export class MovieView extends React.Component {
   }
 
   addMovie(movie, user) {
-    const username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    let username = localStorage.getItem('user');
+    let token = localStorage.getItem('token');
     console.log(movie);
     console.log(token);
 
-    axios.post(`https://piratemoviesapi.herokuapp.com/users/${username}/movies/${movie._id}`, {},
-      { headers: { Authorization: `Bearer ${token}` } })
-      .then(response => {
-        this.setState({
-          user: response.data
-        });
+    axios.post(`https://piratemoviesapi.herokuapp.com/users/${username}/movies/${movie._id}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+      .then(() => {
+        alert(`${movie.Title} was successfully added.`)
+        window.open('/users/:username', '_self');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
 
+  deleteMovie = (movie, user) => {
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    axios.delete(`https://piratemoviesapi.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        alert(`${movie.Title} was successfully deleted.`)
+        window.open('/users/:username', '_self');
+      })
+      .catch(error => console.error(error))
+  }
+
   render() {
-    const { movie, user, onClick, onBackClick } = this.props;
+    const { movie, user, onBackClick } = this.props;
 
     return (
       <Container>
@@ -61,7 +75,12 @@ export class MovieView extends React.Component {
               </p>
 
             </Card.Text>
-            <Button variant="secondary" onClick={() => { this.addMovie(movie, user) }}>Add movies to Favorites</Button>
+            <p>
+              <Button variant="secondary" onClick={() => { this.addMovie(movie, user) }}>Add movies to Favorites</Button>
+            </p>
+            <p>
+              <Button variant="warning" onClick={() => { this.deleteMovie(movie, user) }}>Remove movie from Favorites</Button>
+            </p>
           </Card.Body>
           <Button variant="primary" onClick={() => { onBackClick() }}>Back</Button>
         </Card>

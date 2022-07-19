@@ -28,20 +28,6 @@ export function ProfileView(props) {
     getUser();
   }, [])
 
-  const deleteMovie = (movieId) => {
-    const username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    axios.delete(`https://piratemoviesapi.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(() => {
-        alert(`The movie was successfully deleted.`)
-        window.open('/users/:username', '_self');
-        setFavoriteMovies(favoriteMovies.filter(movie => movie._id != movieId));
-      })
-      .catch(error => console.error(error))
-  }
-
 
   const deleteAccount = () => {
     axios

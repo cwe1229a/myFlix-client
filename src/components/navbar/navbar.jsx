@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
 export function Navbar({ user, onLoggedOut }) {
-  const handelLogOut = (e) => {
+  const handleLogOut = (e) => {
     e.preventDefault();
     localStorage.clear();
     window.open('/', '_self');
@@ -28,10 +28,11 @@ export function Navbar({ user, onLoggedOut }) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
+            {isAuth() && <Nav.Link href="/">Home</Nav.Link>}
             {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
 
             {isAuth() && (
-              <Button variant="link" onClick={handelLogOut}>
+              <Button variant="link" onClick={handleLogOut}>
                 Logout
               </Button>
             )}
