@@ -1,51 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Button, Card, Col, Row, Container } from 'react-bootstrap';
+import PropTypes from "prop-types";
+import { Button, Card, CardGroup, Col, Row, Container, Form } from 'react-bootstrap';
+import { MovieCard } from '../movie-card/movie-card';
 
-import { UserUpdate } from './update-view';
+import { connect } from 'react-redux';
 
-export function ProfileView(props) {
-  const [userData, setUserData] = useState({});
-  const [updatedUser, setUpdatedUser] = useState({});
+
+export function ProfileView({ movies }) {
+  const [username, setUsername] = useState('');
+  const [Password, setPassword] = useState('');
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const token = localStorage.getItem('token');
-
-  const getUser = () => {
-    const username = localStorage.getItem('user');
-    axios.get(`https://piratemoviesapi.herokuapp.com/users/${currentUser}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        setUserData(response.data);
-        setUpdatedUser(response.data);
-        setFavoriteMovies(props.movies.filter((m) => response.data.FavoriteMovies.includes(m._id)));
-      })
-      .catch(error => console.error(error))
-  }
+  const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   useEffect(() => {
     getUser();
-  }, [])
+  }, []);
 
-  const deleteMovie = (movieId) => {
-    const username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    axios.delete(`https://piratemoviesapi.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
+  const getUser = () => {
+    let token = localStorage.getItem('token');
+    let user = localStorage.getItem("user");
+    axios.get(`https://piratemoviesapi.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(() => {
-        alert(`The movie was successfully deleted.`)
-        window.open('/users/:username', '_self');
-        setFavoriteMovies(favoriteMovies.filter(movie => movie._id != movieId));
+      .then((response) => {
+        setUsername(response.data.Username)
+        setEmail(response.data.Email)
+        setFavoriteMovies(response.data.FavoriteMovies)
+        console.log(response.data)
       })
-      .catch(error => console.error(error))
+      .catch(e => {
+        console.log('Error')
+      });
   }
 
 
   const deleteAccount = () => {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token');
     axios
-      .delete(`https://piratemoviesapi.herokuapp.com/users/${username}`, {
+      .delete(`https://piratemoviesapi.herokuapp.com/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
@@ -56,66 +51,130 @@ export function ProfileView(props) {
       .catch((err) => console.log(err));
   };
 
+  const updateUser = () => {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token');
+    axios
+      .put(
+        `https://piratemoviesapi.herokuapp.com/users/${user}`,
+        {
+          Username: username,
+          Password: Password,
+          Email: email,
+          Birthday: birthday,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+
+      .then((response) => {
+        alert(`Your profile has been updated`);
+        localStorage.setItem('user', response.data.Username),
+          console.log(response.data);
+        window.open('/', '_self');
+      })
+      .catch((e) => {
+        console.log("Error");
+      });
+  };
+
+  const favoriteMoviesList = () => {
+    if (movies.length + 0) {
+
+      return (
+        <Row className="justify-content-md-center">
+
+          {favoriteMovies.length === 0 ? (<h3>Add some movies to your list</h3>) : (
+            favoriteMovies.map((movieId, i) => (
+              <Col md={6} lg={4} key={`${i}-${movieId}`}>
+                <MovieCard key={`${i}-${movieId}`} movie={movies.find(m => m._id == movieId)} />
+              </Col>
+            ))
+          )}
+
+        </Row>
+      )
+    }
+  }
+
 
 
   return (
-
-    <Container className="profile-view">
-      <Card>
-        <Card.Body>
-          <Card.Title>Crew Member</Card.Title>
-          <Row>
-            <Col className="label">Username:</Col>
-            <Col className="value">{user.Username}</Col>
-          </Row>
-          <Row className="mt-3">
-            <Col className="label">Password:</Col>
-            <Col className="value">******</Col>
-          </Row>
-          <Row className="mt-3">
-            <Col className="label">Email:</Col>
-            <Col className="value">{user.Email}</Col>
-          </Row>
-          <Row className="mt-3">
-            <Col className="label">Birthday:</Col>
-            <Col className="value">{user.Birthday}</Col>
-          </Row>
-          <Link to={`/users/user-update/${userData.Username}`}>
-            <Button variant="primary" type="submit">Update Profile</Button>
-          </Link>
-        </Card.Body>
-      </Card>
+    <Container>
       <Row>
         <Col>
-          <Button variant="danger" type="submit" onClick={deleteAccount}>Delete Profile</Button>
+          <CardGroup>
+            <Card>
+              <Card.Body>
+                <Card.Title>Crew Member Info</Card.Title>
+                <Form>
+                  <Form.Group controlId="formUsername" className="reg-form-inputs">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={username} onChange={(e) => setUsername(e.target.value)} />
+                  </Form.Group>
+
+                  <Form.Group controlId="formPassword" className="reg-form-inputs">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      value={Password} onChange={e => setPassword(e.target.value)} />
+                  </Form.Group>
+
+                  <Form.Group controlId="Email" className="reg-form-inputs">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
+                      type="email"
+                      value={email} onChange={e => setEmail(e.target.value)} />
+                  </Form.Group>
+
+                  <Form.Group controlId="updateBirthday">
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control
+                      type="date"
+                      name="birthday"
+                      value={birthday} onChange={e => setBirthday(e.target.value)} />
+                  </Form.Group>
+                  <Button variant="primary" type="submit"
+                    onClick={updateUser}>
+                    Update your profile
+                  </Button>
+                  <p></p>
+                  <Button variant="warning" type="submit"
+                    onClick={deleteAccount}>
+                    Delete your profile
+                  </Button>
+                </Form>
+                <p></p>
+                <h3>Favorite Movies</h3>
+                {favoriteMoviesList()}
+              </Card.Body>
+            </Card>
+          </CardGroup>
         </Col>
       </Row>
-      <Card>
-
-        <Card.Body>
-          <Card.Title>Favorite Movie List</Card.Title>
-          {favoriteMovies.map((m) => {
-            return (
-              <div key={m._id}>
-                <img src={m.ImagePath} />
-                <Link to={`/movies/${m._id}`}>
-                  <h4>{m.Title}</h4>
-                </Link>
-              </div>)
-          })
-          }
-        </Card.Body>
-      </Card>
-
-
     </Container>
-  )
+
+  );
 }
 
-ProfileView.PropTypes = {
+ProfileView.propTypes = {
+  profileView: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string,
+  }),
+};
 
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-}
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(ProfileView);
 
 

@@ -14,7 +14,6 @@ import { ProfileView } from '../profile-view/profile-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { UserUpdate } from '../profile-view/update-view';
 import { Navbar } from '../navbar/navbar';
 
 class MainView extends React.Component {
@@ -122,7 +121,7 @@ class MainView extends React.Component {
             render={({ match, history }) => {
               if (!user) return <Redirect to="/" />
               return <Col>
-                <UserUpdate />
+                <ProfileView />
               </Col>
             }} />
 
