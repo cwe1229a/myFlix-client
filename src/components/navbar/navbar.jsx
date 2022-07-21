@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
-export function Navbar({ user, onLoggedOut }) {
+export function MyNavbar({ user, onLoggedOut }) {
   const handelLogOut = (e) => {
     e.preventDefault();
     localStorage.clear();
