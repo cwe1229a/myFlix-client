@@ -74,7 +74,7 @@ class MainView extends React.Component {
 
     return (
       <Router>
-        <Navbar user={user} />
+        <MyNavbar user={user} />
         <Row className="main-view justify-content-md-center">
           <Switch>
             <Route
