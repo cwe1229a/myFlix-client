@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from "react-bootstrap";
 
+import "./genre-view.scss";
 
 export class GenreView extends React.Component {
   render() {
     const { genre, onBackClick } = this.props;
-
 
     return (
       <Container>
@@ -19,9 +19,17 @@ export class GenreView extends React.Component {
           <Col className="label">Description: </Col>
           <Col className="value">{genre.Description}</Col>
         </Row>
-        <Button className="d-block mt-3" onClick={() => { onBackClick(null); }} variant="warning">Back</Button>
+        <Button
+          className="d-block mt-3"
+          onClick={() => {
+            onBackClick(null);
+          }}
+          variant="warning"
+        >
+          Back
+        </Button>
       </Container>
-    )
+    );
   }
 }
 
@@ -30,5 +38,5 @@ GenreView.propTypes = {
     Name: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-}
+  onBackClick: PropTypes.func.isRequired,
+};

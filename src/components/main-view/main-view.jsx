@@ -17,21 +17,14 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MyNavbar } from "../navbar/navbar";
+import "./main-view.scss";
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null,
-    };
-  }
-
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+      const { setUser } = this.props;
+      setUser(localStorage.getItem("user"));
       this.getMovies(accessToken);
     }
   }
@@ -51,7 +44,8 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.props.setUser(authData.user.Username);
+    const { setUser } = this.props;
+    setUser(authData.user.Username);
     this.getMovies(authData.token);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -60,7 +54,10 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.props.setUser("");
+    this.setState({
+      user: null,
+    });
+    // this.props.setUser("");
   }
 
   onRegister() {
@@ -223,22 +220,31 @@ class MainView extends React.Component {
     );
   }
 }
-let mapStateToProps = (store) => {
+let mapStateToProps = (state) => {
   return {
-    movies: store.movies,
-    user: store.user,
+    movies: state.movies,
+    user: state.user,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUser: (user) => {
-      dispatch(setUser(user));
-    },
-    setMovies: (movies) => {
-      dispatch(setMovies(movies));
-    },
-  };
-};
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+// let mapStateToProps = (store) => {
+//   return {
+//     movies: store.movies,
+//     user: store.user,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     setUser: (user) => {
+//       dispatch(setUser(user));
+//     },
+//     setMovies: (movies) => {
+//       dispatch(setMovies(movies));
+//     },
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(MainView);

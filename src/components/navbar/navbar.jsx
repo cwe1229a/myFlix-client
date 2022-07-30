@@ -1,28 +1,31 @@
-import React from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import React from "react";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import "./navbar.scss";
+import movieFlag from "./flag.svg";
 
 export function MyNavbar({ user, onLoggedOut }) {
-  const handelLogOut = (e) => {
+  const handleLogOut = (e) => {
     e.preventDefault();
     localStorage.clear();
-    window.open('/', '_self');
+    window.open("/", "_self");
     onLoggedOut(user);
   };
 
   const isAuth = () => {
-    if (typeof window == 'undefined') {
+    if (typeof window == "undefined") {
       return false;
     }
-    if (localStorage.getItem('token')) {
-      return localStorage.getItem('token');
+    if (localStorage.getItem("token")) {
+      return localStorage.getItem("token");
     } else {
       return false;
     }
   };
   return (
-    <Navbar className="main-nav" sticky="top" bg="dark" expand="lg" variant="dark">
+    <Navbar className="main-nav" sticky="top" expand="lg">
       <Container>
         <Navbar.Brand className="navbar-logo" href="/">
+          <img src={movieFlag} alt="pirate flag" />
           Pirate MyFlix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -31,7 +34,7 @@ export function MyNavbar({ user, onLoggedOut }) {
             {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
 
             {isAuth() && (
-              <Button variant="link" onClick={handelLogOut}>
+              <Button variant="link" onClick={handleLogOut}>
                 Logout
               </Button>
             )}

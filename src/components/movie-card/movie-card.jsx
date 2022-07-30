@@ -1,7 +1,7 @@
-
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
+import "./movie-card.scss";
 
 import { Link } from "react-router-dom";
 
@@ -27,6 +27,6 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired
-  }).isRequired
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
 };

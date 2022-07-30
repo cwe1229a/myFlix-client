@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from "react-bootstrap";
 
-// import './director-view.scss';
+import "./director-view.scss";
 
 export class DirectorView extends React.Component {
   render() {
@@ -23,9 +23,16 @@ export class DirectorView extends React.Component {
           <Col className="label">Birth: </Col>
           <Col className="value">{director.Birth}</Col>
         </Row>
-        <Button onClick={() => { onBackClick(null); }} variant="warning">Back</Button>
+        <Button
+          onClick={() => {
+            onBackClick(null);
+          }}
+          variant="warning"
+        >
+          Back
+        </Button>
       </Container>
-    )
+    );
   }
 }
 
@@ -34,5 +41,5 @@ DirectorView.propTypes = {
     Name: PropTypes.string.isRequired,
     Bio: PropTypes.string.isRequired,
     Birth: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
 };
