@@ -1,3 +1,8 @@
 $backgroundColor: #1f0d0d;
 $textColor: #ffffff;
 $elementsColor: #a02424;
+
+.movie-card {
+  background-color: #a02424;
+  border-color: grayscale($color: #000000);
+}

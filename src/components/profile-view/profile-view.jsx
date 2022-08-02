@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { setUser } from "../../actions/actions.js";
 import {
   Button,
   Card,
@@ -13,16 +15,14 @@ import {
 import { MovieCard } from "../movie-card/movie-card";
 import "./profile-view.scss";
 
-export function ProfileView({ movies }) {
+export function ProfileView(props) {
+  const [user, setUser] = useState(props.user);
   const [username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const movies = props.movies;
 
   const getUser = () => {
     let token = localStorage.getItem("token");
@@ -32,6 +32,7 @@ export function ProfileView({ movies }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        setUser(response.data);
         setUsername(response.data.Username);
         setEmail(response.data.Email);
         setFavoriteMovies(response.data.FavoriteMovies);
@@ -41,6 +42,10 @@ export function ProfileView({ movies }) {
         console.log("Error");
       });
   };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const deleteAccount = () => {
     let user = localStorage.getItem("user");
@@ -190,3 +195,11 @@ ProfileView.propTypes = {
     Birthday: PropTypes.string,
   }),
 };
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { setUser })(ProfileView);
