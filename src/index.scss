@@ -1,3 +1,13 @@
-$backgroundColor: #1f0d0d;
-$textColor: #ffffff;
-$elementsColor: #a02424;
+$color: #1f0d0d;
+$color2: #ffffff;
+$color3: #a02424;
+
+body,
+html {
+  background: $color;
+}
+
+.app-container {
+  width: 100%;
+  background: $color2;
+}
