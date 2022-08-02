@@ -85,7 +85,6 @@ class MainView extends React.Component {
                     </Col>
                   );
 
-                // if (movies.length === 0) return <div className="main-view" />;
                 if (user) return <MoviesList movies={movies} />;
               }}
             />
@@ -228,23 +227,3 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { setMovies, setUser })(MainView);
-
-// let mapStateToProps = (store) => {
-//   return {
-//     movies: store.movies,
-//     user: store.user,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setUser: (user) => {
-//       dispatch(setUser(user));
-//     },
-//     setMovies: (movies) => {
-//       dispatch(setMovies(movies));
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MainView);
